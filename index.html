@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Голубика">
+<meta name="theme-color" content="#1e3a5f">
+<title>ГОЛУБИКА в моём саду</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0e1f35;
+  --card:#152843;
+  --card2:#1a3252;
+  --border:#1e3d60;
+  --blue:#3b82f6;
+  --blue-light:#60a5fa;
+  --green:#22c55e;
+  --green-light:#4ade80;
+  --amber:#f59e0b;
+  --amber-light:#fbbf24;
+  --red:#ef4444;
+  --text:#e2eaf4;
+  --text-muted:#6b8aaa;
+  --text-dim:#3d5a78;
+  --berry:#4f46e5;
+  --berry-light:#818cf8;
+  --radius:18px;
+  --radius-sm:10px;
+}
+html{height:100%;-webkit-tap-highlight-color:transparent}
+body{
+  font-family:'Nunito',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100%;
+  overflow-x:hidden;
+  padding-bottom:80px;
+}
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(14,31,53,0.92);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:0 16px;
+  height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-icon{
+  width:38px;height:38px;border-radius:12px;
+  background:linear-gradient(135deg,#3b82f6,#1e40af);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+.brand-text{line-height:1}
+.brand-name{
+  font-family:'Lora',serif;font-size:18px;
+  font-weight:600;color:#fff;letter-spacing:-0.3px;
+}
+.brand-sub{font-size:10px;color:var(--blue-light);letter-spacing:1px;text-transform:uppercase}
+.nav-actions{display:flex;gap:6px}
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 14px;border-radius:100px;
+  font-size:13px;font-weight:700;
+  border:none;cursor:pointer;transition:all .15s;
+  font-family:'Nunito',sans-serif;
+  -webkit-appearance:none;
+}
+.btn:active{transform:scale(0.96)}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:#2563eb}
+.btn-ghost{background:transparent;color:var(--text-muted);border:1px solid var(--border)}
+.btn-ghost:hover{background:var(--card);color:var(--text)}
+.btn-amber{background:var(--amber);color:#000}
+.btn-amber:hover{background:var(--amber-light)}
+.btn-sm{padding:6px 12px;font-size:12px}
+.btn-danger{background:var(--red);color:#fff}
+
+/* LAYOUT */
+.container{max-width:700px;margin:0 auto;padding:20px 16px}
+h1{font-family:'Lora',serif;font-size:28px;font-weight:600;letter-spacing:-0.5px;color:#fff}
+h2{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
+.sub{font-size:12px;color:var(--text-muted)}
+
+/* STATS GRID */
+.stats-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  margin:20px 0;
+}
+.stat{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;
+}
+.stat-label{font-size:11px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.stat-value{font-size:28px;font-weight:800;line-height:1;color:#fff}
+.stat-hint{font-size:11px;color:var(--text-muted);margin-top:3px}
+.stat-icon{font-size:22px;margin-bottom:8px}
+
+/* SEARCH */
+.search-wrap{position:relative;margin:16px 0}
+.search-wrap input{
+  width:100%;padding:12px 16px 12px 44px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:100px;color:var(--text);font-size:14px;
+  font-family:'Nunito',sans-serif;
+  outline:none;transition:border .2s;
+}
+.search-wrap input:focus{border-color:var(--blue)}
+.search-wrap input::placeholder{color:var(--text-dim)}
+.search-icon{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  color:var(--text-muted);pointer-events:none;font-size:16px;
+}
+
+/* SECTOR CARDS */
+.sectors-grid{display:flex;flex-direction:column;gap:12px}
+.sector-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:18px;
+  cursor:pointer;transition:all .2s;position:relative;
+  -webkit-tap-highlight-color:transparent;
+}
+.sector-card:hover{border-color:var(--blue);background:var(--card2)}
+.sector-card:active{transform:scale(0.99)}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.card-name{font-size:18px;font-weight:800;color:#fff;line-height:1}
+.card-variety{
+  display:inline-block;padding:3px 10px;
+  background:rgba(59,130,246,0.15);color:var(--blue-light);
+  border-radius:100px;font-size:11px;font-weight:700;
+  margin-top:5px;
+}
+.card-year{font-size:11px;color:var(--text-muted);margin-left:6px}
+.card-count{text-align:right}
+.card-num{font-size:32px;font-weight:800;color:#fff;line-height:1}
+.card-num-label{font-size:10px;color:var(--text-muted)}
+.card-body{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:10px}
+.card-stat{text-align:center}
+.card-stat-val{font-size:16px;font-weight:800}
+.card-stat-label{font-size:10px;color:var(--text-muted)}
+.card-green{color:var(--green-light)}
+.card-amber{color:var(--amber-light)}
+.card-blue{color:var(--blue-light)}
+.card-foot{display:flex;justify-content:space-between;align-items:center;font-size:12px}
+.card-potential{color:var(--text-muted)}
+.card-potential span{color:var(--green-light);font-weight:700}
+.card-link{color:var(--blue-light);font-weight:700;display:flex;align-items:center;gap:4px}
+.card-actions{position:absolute;top:14px;right:50px;display:flex;gap:4px}
+.icon-btn{
+  width:32px;height:32px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  background:transparent;border:none;cursor:pointer;
+  color:var(--text-muted);transition:all .15s;font-size:13px;
+}
+.icon-btn:hover{background:var(--border);color:var(--text)}
+
+/* SECTION HEADER */
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;margin:28px 0 12px}
+.section-title{font-size:16px;font-weight:800;color:#fff}
+
+/* EXPENSES */
+.expense-cats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
+.exp-cat{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:12px;
+}
+.exp-cat-name{font-size:10px;color:var(--text-muted);font-weight:700;text-transform:uppercase}
+.exp-cat-val{font-size:20px;font-weight:800;color:var(--amber-light)}
+.exp-cat-hint{font-size:10px;color:var(--text-muted)}
+.expense-list{display:flex;flex-direction:column;gap:8px}
+.exp-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:12px 14px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.exp-item-left{display:flex;flex-direction:column;gap:2px}
+.exp-item-name{font-size:14px;font-weight:700;color:#fff}
+.exp-item-meta{font-size:11px;color:var(--text-muted)}
+.exp-item-right{display:flex;align-items:center;gap:8px}
+.exp-item-cost{font-size:16px;font-weight:800;color:var(--amber-light)}
+
+/* EMPTY STATE */
+.empty{
+  text-align:center;padding:40px 20px;
+  color:var(--text-muted);
+}
+.empty-icon{font-size:40px;margin-bottom:10px}
+.empty-text{font-size:14px}
+
+/* ===== MODAL ===== */
+.overlay{
+  display:none;position:fixed;inset:0;z-index:200;
+  background:rgba(5,15,30,0.85);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  align-items:flex-end;justify-content:center;
+  padding:0;
+}
+.overlay.open{display:flex}
+.modal{
+  background:var(--card);border-radius:28px 28px 0 0;
+  border:1px solid var(--border);
+  width:100%;max-width:700px;
+  max-height:92vh;overflow-y:auto;
+  padding:0 0 env(safe-area-inset-bottom,16px) 0;
+  animation:slideUp .28s cubic-bezier(.25,.46,.45,.94);
+}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-handle{
+  width:40px;height:4px;border-radius:2px;
+  background:var(--border);margin:12px auto 0;
+}
+.modal-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 20px 0;
+}
+.modal-title{font-size:18px;font-weight:800;color:#fff}
+.modal-close{
+  width:32px;height:32px;border-radius:8px;
+  background:var(--card2);border:none;cursor:pointer;
+  color:var(--text-muted);font-size:16px;display:flex;
+  align-items:center;justify-content:center;
+}
+.modal-body{padding:16px 20px}
+
+/* FORM */
+.form-group{margin-bottom:14px}
+label{display:block;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+input,select,textarea{
+  width:100%;padding:12px 14px;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--radius-sm);color:var(--text);
+  font-size:15px;font-family:'Nunito',sans-serif;
+  outline:none;transition:border .2s;
+  -webkit-appearance:none;appearance:none;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+input::placeholder{color:var(--text-dim)}
+textarea{resize:vertical;min-height:80px}
+select option{background:var(--card)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-actions{display:flex;gap:8px;padding:4px 20px 20px;}
+.form-actions .btn{flex:1;justify-content:center;padding:14px}
+
+/* JOURNAL */
+.journal-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.journal-item{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:12px 14px;
+}
+.journal-item-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.journal-type{
+  font-size:11px;font-weight:700;padding:2px 8px;
+  border-radius:100px;
+}
+.type-watering{background:rgba(59,130,246,.2);color:var(--blue-light)}
+.type-fertilizer{background:rgba(34,197,94,.2);color:var(--green-light)}
+.type-treatment{background:rgba(245,158,11,.2);color:var(--amber-light)}
+.type-pruning{background:rgba(239,68,68,.2);color:#fca5a5}
+.type-harvest{background:rgba(99,102,241,.2);color:var(--berry-light)}
+.type-other{background:rgba(107,138,170,.2);color:var(--text-muted)}
+.journal-date{font-size:11px;color:var(--text-muted)}
+.journal-note{font-size:13px;color:var(--text);margin-top:2px}
+.journal-actions-row{display:flex;gap:6px;margin-top:6px;justify-content:flex-end}
+
+/* DETAIL INFO */
+.detail-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0;
+}
+.detail-stat{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:12px;text-align:center;
+}
+.detail-stat-val{font-size:20px;font-weight:800;color:#fff}
+.detail-stat-label{font-size:10px;color:var(--text-muted);margin-top:2px}
+.info-block{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:14px;margin-bottom:14px;
+}
+.info-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px}
+.info-row:last-child{border-bottom:none}
+.info-key{color:var(--text-muted)}
+.info-val{font-weight:700;color:#fff}
+
+/* TABS */
+.tabs{display:flex;gap:4px;background:var(--bg);border-radius:var(--radius-sm);padding:4px;margin-bottom:14px}
+.tab{
+  flex:1;text-align:center;padding:8px;border-radius:7px;
+  font-size:12px;font-weight:700;cursor:pointer;border:none;
+  background:transparent;color:var(--text-muted);transition:all .15s;
+  font-family:'Nunito',sans-serif;
+}
+.tab.active{background:var(--card);color:#fff}
+
+/* BADGE */
+.badge{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:4px 10px;border-radius:100px;font-size:11px;font-weight:700;
+}
+.badge-blue{background:rgba(59,130,246,.15);color:var(--blue-light)}
+
+/* FOOTER */
+footer{
+  text-align:center;padding:20px 16px;
+  font-size:11px;color:var(--text-dim);
+}
+footer a{color:var(--text-muted);text-decoration:none;font-weight:700}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);
+  background:#1e3252;border:1px solid var(--blue);
+  border-radius:100px;padding:10px 20px;font-size:13px;font-weight:700;
+  color:#fff;z-index:300;transition:transform .3s;white-space:nowrap;
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--border);margin:16px 0}
+
+@media(min-width:600px){
+  .stats-grid{grid-template-columns:repeat(4,1fr)}
+  .expense-cats{grid-template-columns:repeat(5,1fr)}
+  .modal{border-radius:20px;max-height:85vh;margin-bottom:40px}
+  .overlay{align-items:center;padding:20px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <div class="brand-icon">🫐</div>
+    <div class="brand-text">
+      <div class="brand-name">ГОЛУБИКА</div>
+      <div class="brand-sub">в моём саду</div>
+    </div>
+  </div>
+  <div class="nav-actions">
+    <button class="btn btn-ghost btn-sm" onclick="exportData()" title="Экспорт">⬇ <span class="hide-xs">Экспорт</span></button>
+    <label class="btn btn-ghost btn-sm" title="Импорт" style="cursor:pointer">
+      ⬆ <span class="hide-xs">Импорт</span>
+      <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(event)">
+    </label>
+    <button class="btn btn-primary btn-sm" onclick="showSectorModal()">+ Сектор</button>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div style="margin:20px 0 0">
+    <h1>Моя плантация</h1>
+    <p class="sub">Сектора · Журнал ухода · Аналитика</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat">
+      <div class="stat-icon">🗂</div>
+      <div class="stat-label">Секторов</div>
+      <div class="stat-value" id="st-sectors">0</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon">🌿</div>
+      <div class="stat-label">Кустов</div>
+      <div class="stat-value" id="st-bushes">0</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon">⚖️</div>
+      <div class="stat-label">Потенциал</div>
+      <div class="stat-value" id="st-yield">0</div>
+      <div class="stat-hint">кг (2,5 кг/куст)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon">💰</div>
+      <div class="stat-label">Доход</div>
+      <div class="stat-value" id="st-profit" style="color:var(--green-light)">0</div>
+      <div class="stat-hint">₽ всего</div>
+    </div>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search-input" placeholder="Поиск по сектору или сорту…" oninput="filterSectors()">
+  </div>
+
+  <!-- SECTORS -->
+  <div class="section-header">
+    <div>
+      <div class="section-title">Сектора посадки</div>
+      <div class="sub">Нажмите на карточку — журнал и детали</div>
+    </div>
+    <button class="btn btn-primary btn-sm" onclick="showSectorModal()">+ Добавить</button>
+  </div>
+
+  <div class="sectors-grid" id="sectors-grid"></div>
+
+  <!-- EXPENSES -->
+  <div class="section-header" style="margin-top:36px">
+    <div>
+      <div class="section-title">💰 Затраты на содержание</div>
+      <div class="sub">Удобрения · Препараты · Вода · Прочее</div>
+    </div>
+    <button class="btn btn-amber btn-sm" onclick="showExpenseModal()">+ Добавить</button>
+  </div>
+
+  <div class="expense-cats" id="expense-cats"></div>
+
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <span style="font-size:14px;font-weight:700">Последние записи</span>
+      <button class="btn btn-ghost btn-sm" onclick="showAllExpenses()">Все</button>
+    </div>
+    <div id="expenses-list"></div>
+  </div>
+
+</div>
+
+<footer>
+  Разработал <a href="https://t.me/logunov_yalta" target="_blank">@logunov_yalta</a> · ГОЛУБИКА в моём саду<br>
+  <span>Данные хранятся на устройстве · Экспорт JSON для резервной копии</span>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- =================== MODAL: СЕКТОР =================== -->
+<div class="overlay" id="sector-overlay" onclick="overlayClose(event,'sector-overlay')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <span class="modal-title" id="sector-modal-title">Новый сектор</span>
+      <button class="modal-close" onclick="closeOverlay('sector-overlay')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Название сектора *</label>
+          <input type="text" id="f-name" placeholder="Сектор А">
+        </div>
+        <div class="form-group">
+          <label>Сорт</label>
+          <input type="text" id="f-variety" placeholder="Блюкроп">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Год посадки</label>
+          <input type="number" id="f-year" placeholder="2022" min="1990" max="2030">
+        </div>
+        <div class="form-group">
+          <label>Кол-во кустов *</label>
+          <input type="number" id="f-qty" placeholder="50" min="1">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Урожай (кг)</label>
+          <input type="number" id="f-harvest" placeholder="0" min="0" step="0.1" oninput="autoCalcProfit()">
+        </div>
+        <div class="form-group">
+          <label>Цена ₽/кг</label>
+          <input type="number" id="f-price" placeholder="0" min="0" oninput="autoCalcProfit()">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Доход (₽) — авторасчёт</label>
+        <input type="number" id="f-profit" placeholder="0">
+      </div>
+      <div class="form-group">
+        <label>Площадь (м²)</label>
+        <input type="number" id="f-area" placeholder="0" step="0.1">
+      </div>
+      <div class="form-group">
+        <label>Заметки</label>
+        <textarea id="f-notes" placeholder="Особенности, наблюдения…"></textarea>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-ghost" onclick="closeOverlay('sector-overlay')">Отмена</button>
+      <button class="btn btn-primary" onclick="saveSector()">Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<!-- =================== MODAL: ДЕТАЛИ СЕКТОРА =================== -->
+<div class="overlay" id="detail-overlay" onclick="overlayClose(event,'detail-overlay')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <span class="modal-title" id="detail-title">Сектор</span>
+      <button class="modal-close" onclick="closeOverlay('detail-overlay')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="detail-stats" id="detail-stats"></div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('info')" id="tab-info">Информация</button>
+        <button class="tab" onclick="switchTab('journal')" id="tab-journal">Журнал</button>
+        <button class="tab" onclick="switchTab('addlog')" id="tab-addlog">+ Запись</button>
+      </div>
+
+      <div id="panel-info">
+        <div class="info-block" id="detail-info-rows"></div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="editCurrentSector()">✏️ Редактировать</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteCurrentSector()">🗑</button>
+        </div>
+      </div>
+
+      <div id="panel-journal" style="display:none">
+        <div class="journal-list" id="journal-list"></div>
+        <div id="journal-empty" class="empty" style="display:none">
+          <div class="empty-icon">📔</div>
+          <div class="empty-text">Записей пока нет</div>
+        </div>
+      </div>
+
+      <div id="panel-addlog" style="display:none">
+        <div class="form-group">
+          <label>Дата</label>
+          <input type="date" id="log-date">
+        </div>
+        <div class="form-group">
+          <label>Тип</label>
+          <select id="log-type">
+            <option value="watering">💧 Полив</option>
+            <option value="fertilizer">🌱 Удобрение</option>
+            <option value="treatment">🧪 Обработка</option>
+            <option value="pruning">✂️ Обрезка</option>
+            <option value="harvest">🫐 Сбор урожая</option>
+            <option value="other">📝 Другое</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Заметка</label>
+          <textarea id="log-note" placeholder="Что сделали, чем обработали…"></textarea>
+        </div>
+        <div class="form-actions" style="padding:0">
+          <button class="btn btn-ghost" onclick="switchTab('journal')">Отмена</button>
+          <button class="btn btn-primary" onclick="saveLog()">Добавить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== MODAL: ЗАТРАТА =================== -->
+<div class="overlay" id="expense-overlay" onclick="overlayClose(event,'expense-overlay')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <span class="modal-title">Новая затрата</span>
+      <button class="modal-close" onclick="closeOverlay('expense-overlay')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Наименование *</label>
+        <input type="text" id="e-name" placeholder="Кальциевая селитра">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Категория</label>
+          <select id="e-cat">
+            <option value="fertilizer">🌱 Удобрения</option>
+            <option value="treatment">🧪 Препараты</option>
+            <option value="water">💧 Вода</option>
+            <option value="equipment">🔧 Оборудование</option>
+            <option value="other">📦 Прочее</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Сумма (₽) *</label>
+          <input type="number" id="e-cost" placeholder="0" min="0">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Дата</label>
+          <input type="date" id="e-date">
+        </div>
+        <div class="form-group">
+          <label>Сектор (если конкретный)</label>
+          <select id="e-sector">
+            <option value="">Все сектора</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Заметка</label>
+        <input type="text" id="e-note" placeholder="Дополнительно…">
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-ghost" onclick="closeOverlay('expense-overlay')">Отмена</button>
+      <button class="btn btn-amber" onclick="saveExpense()">Добавить</button>
+    </div>
+  </div>
+</div>
+
+<!-- =================== MODAL: ВСЕ ЗАТРАТЫ =================== -->
+<div class="overlay" id="all-expenses-overlay" onclick="overlayClose(event,'all-expenses-overlay')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <span class="modal-title">Все затраты</span>
+      <button class="modal-close" onclick="closeOverlay('all-expenses-overlay')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="all-expenses-list"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+//  STATE
+// ============================================================
+let sectors = [];
+let expenses = [];
+let currentSectorId = null;
+let editingSectorId = null;
+
+// ============================================================
+//  INIT
+// ============================================================
+function init() {
+  try { sectors = JSON.parse(localStorage.getItem('gb_sectors') || '[]'); } catch(e){ sectors=[]; }
+  try { expenses = JSON.parse(localStorage.getItem('gb_expenses') || '[]'); } catch(e){ expenses=[]; }
+  // Set today's date in forms
+  const today = new Date().toISOString().slice(0,10);
+  document.getElementById('log-date').value = today;
+  document.getElementById('e-date').value = today;
+  renderAll();
+}
+
+function renderAll() {
+  updateStats();
+  renderSectors();
+  renderExpensesCats();
+  renderExpensesList();
+}
+
+// ============================================================
+//  STATS
+// ============================================================
+function updateStats() {
+  const totalBushes = sectors.reduce((s,x) => s + (parseInt(x.qty)||0), 0);
+  const totalProfit = sectors.reduce((s,x) => s + (parseFloat(x.profit)||0), 0);
+  document.getElementById('st-sectors').textContent = sectors.length;
+  document.getElementById('st-bushes').textContent = totalBushes.toLocaleString('ru-RU');
+  document.getElementById('st-yield').textContent = Math.round(totalBushes*2.5).toLocaleString('ru-RU');
+  document.getElementById('st-profit').textContent = Math.round(totalProfit).toLocaleString('ru-RU');
+}
+
+// ============================================================
+//  SECTORS RENDER
+// ============================================================
+const TYPE_ICONS = {watering:'💧',fertilizer:'🌱',treatment:'🧪',pruning:'✂️',harvest:'🫐',other:'📝'};
+const CAT_LABELS = {fertilizer:'Удобрения',treatment:'Препараты',water:'Вода',equipment:'Оборудование',other:'Прочее'};
+
+function renderSectors(filtered) {
+  const grid = document.getElementById('sectors-grid');
+  const data = filtered !== undefined ? filtered : sectors;
+  if (!data.length) {
+    grid.innerHTML = '<div class="empty"><div class="empty-icon">🌱</div><div class="empty-text">Нет секторов. Добавьте первый!</div></div>';
+    return;
+  }
+  grid.innerHTML = data.map(s => {
+    const qty = parseInt(s.qty)||0;
+    const harvest = parseFloat(s.harvest)||0;
+    const profit = parseFloat(s.profit)||0;
+    const potential = Math.round(qty*2.5);
+    const price = s.price ? `по ${s.price} ₽/кг` : '';
+    const lastLog = (s.journal||[]).slice(-1)[0];
+    const lastLogText = lastLog ? `${TYPE_ICONS[lastLog.type]||'📝'} ${lastLog.date||''} — ${lastLog.note||''}`.slice(0,60) : 'Записей нет';
+    return `
+    <div class="sector-card" onclick="showDetail('${s.id}')">
+      <div class="card-head">
+        <div>
+          <div class="card-name">${escHtml(s.name)}</div>
+          <span class="card-variety">${escHtml(s.variety||'—')}</span>
+          <span class="card-year">${s.year||''}</span>
+        </div>
+        <div class="card-count">
+          <div class="card-num">${qty}</div>
+          <div class="card-num-label">кустов</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-stat">
+          <div class="card-stat-val card-green">${harvest} кг</div>
+          <div class="card-stat-label">урожай</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-val card-amber">${Math.round(profit).toLocaleString('ru-RU')} ₽</div>
+          <div class="card-stat-label">${price||'доход'}</div>
+        </div>
+        <div class="card-stat">
+          <div class="card-stat-val card-blue">${(s.journal||[]).length}</div>
+          <div class="card-stat-label">записей</div>
+        </div>
+      </div>
+      <div class="card-foot">
+        <div class="card-potential">Потенциал: <span>${potential} кг</span></div>
+        <div style="display:flex;gap:6px;align-items:center">
+          <button class="icon-btn" onclick="event.stopPropagation();editSector('${s.id}')" title="Редактировать">✏️</button>
+          <span class="card-link">Журнал →</span>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">
+        🕐 ${escHtml(lastLogText)}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterSectors() {
+  const q = document.getElementById('search-input').value.toLowerCase().trim();
+  if (!q) { renderSectors(); return; }
+  renderSectors(sectors.filter(s =>
+    (s.name||'').toLowerCase().includes(q) ||
+    (s.variety||'').toLowerCase().includes(q)
+  ));
+}
+
+// ============================================================
+//  SECTOR MODAL — ADD / EDIT
+// ============================================================
+function showSectorModal(id) {
+  editingSectorId = id || null;
+  const s = id ? sectors.find(x=>x.id===id) : null;
+  document.getElementById('sector-modal-title').textContent = s ? 'Редактировать сектор' : 'Новый сектор';
+  document.getElementById('f-name').value    = s ? s.name||'' : '';
+  document.getElementById('f-variety').value = s ? s.variety||'' : '';
+  document.getElementById('f-year').value    = s ? s.year||'' : '';
+  document.getElementById('f-qty').value     = s ? s.qty||'' : '';
+  document.getElementById('f-harvest').value = s ? s.harvest||'' : '';
+  document.getElementById('f-price').value   = s ? s.price||'' : '';
+  document.getElementById('f-profit').value  = s ? s.profit||'' : '';
+  document.getElementById('f-area').value    = s ? s.area||'' : '';
+  document.getElementById('f-notes').value   = s ? s.notes||'' : '';
+  openOverlay('sector-overlay');
+}
+
+function editSector(id) { showSectorModal(id); }
+
+function autoCalcProfit() {
+  const h = parseFloat(document.getElementById('f-harvest').value)||0;
+  const p = parseFloat(document.getElementById('f-price').value)||0;
+  if (h && p) document.getElementById('f-profit').value = Math.round(h*p);
+}
+
+function saveSector() {
+  const name = document.getElementById('f-name').value.trim();
+  if (!name) { toast('Укажите название сектора'); return; }
+  const qty = document.getElementById('f-qty').value.trim();
+  if (!qty) { toast('Укажите количество кустов'); return; }
+
+  if (editingSectorId) {
+    const idx = sectors.findIndex(x=>x.id===editingSectorId);
+    if (idx>=0) {
+      sectors[idx] = {...sectors[idx],
+        name, variety:document.getElementById('f-variety').value.trim(),
+        year:document.getElementById('f-year').value.trim(),
+        qty:parseInt(qty)||0,
+        harvest:parseFloat(document.getElementById('f-harvest').value)||0,
+        price:parseFloat(document.getElementById('f-price').value)||0,
+        profit:parseFloat(document.getElementById('f-profit').value)||0,
+        area:parseFloat(document.getElementById('f-area').value)||0,
+        notes:document.getElementById('f-notes').value.trim(),
+      };
+    }
+  } else {
+    sectors.push({
+      id:'s'+Date.now(),
+      name, variety:document.getElementById('f-variety').value.trim(),
+      year:document.getElementById('f-year').value.trim(),
+      qty:parseInt(qty)||0,
+      harvest:parseFloat(document.getElementById('f-harvest').value)||0,
+      price:parseFloat(document.getElementById('f-price').value)||0,
+      profit:parseFloat(document.getElementById('f-profit').value)||0,
+      area:parseFloat(document.getElementById('f-area').value)||0,
+      notes:document.getElementById('f-notes').value.trim(),
+      journal:[],
+      createdAt:new Date().toISOString(),
+    });
+  }
+  saveSectors();
+  closeOverlay('sector-overlay');
+  renderAll();
+  toast(editingSectorId ? 'Сектор обновлён ✓' : 'Сектор добавлен ✓');
+  editingSectorId = null;
+}
+
+function deleteCurrentSector() {
+  if (!currentSectorId) return;
+  const s = sectors.find(x=>x.id===currentSectorId);
+  if (!s) return;
+  if (!confirm(`Удалить сектор «${s.name}»?`)) return;
+  sectors = sectors.filter(x=>x.id!==currentSectorId);
+  saveSectors();
+  closeOverlay('detail-overlay');
+  renderAll();
+  toast('Сектор удалён');
+}
+
+// ============================================================
+//  DETAIL MODAL
+// ============================================================
+function showDetail(id) {
+  currentSectorId = id;
+  const s = sectors.find(x=>x.id===id);
+  if (!s) return;
+  document.getElementById('detail-title').textContent = s.name;
+  // Stats
+  const qty = parseInt(s.qty)||0;
+  document.getElementById('detail-stats').innerHTML = `
+    <div class="detail-stat"><div class="detail-stat-val">${qty}</div><div class="detail-stat-label">кустов</div></div>
+    <div class="detail-stat"><div class="detail-stat-val" style="color:var(--green-light)">${parseFloat(s.harvest)||0}</div><div class="detail-stat-label">кг урожай</div></div>
+    <div class="detail-stat"><div class="detail-stat-val" style="color:var(--amber-light)">${Math.round(parseFloat(s.profit)||0).toLocaleString('ru-RU')}</div><div class="detail-stat-label">₽ доход</div></div>
+  `;
+  // Info rows
+  document.getElementById('detail-info-rows').innerHTML = [
+    ['Сорт', s.variety||'—'],
+    ['Год посадки', s.year||'—'],
+    ['Площадь', s.area ? s.area+' м²' : '—'],
+    ['Цена реализации', s.price ? s.price+' ₽/кг' : '—'],
+    ['Потенциал урожая', Math.round(qty*2.5)+' кг'],
+    ['Заметки', s.notes||'—'],
+  ].map(([k,v]) => `<div class="info-row"><span class="info-key">${k}</span><span class="info-val">${escHtml(String(v))}</span></div>`).join('');
+  switchTab('info');
+  openOverlay('detail-overlay');
+}
+
+function editCurrentSector() {
+  closeOverlay('detail-overlay');
+  setTimeout(() => showSectorModal(currentSectorId), 100);
+}
+
+// ============================================================
+//  TABS
+// ============================================================
+const TABS = ['info','journal','addlog'];
+function switchTab(name) {
+  TABS.forEach(t => {
+    document.getElementById('panel-'+t).style.display = t===name?'':'none';
+    document.getElementById('tab-'+t).classList.toggle('active', t===name);
+  });
+  if (name==='journal') renderJournal();
+  if (name==='addlog') {
+    document.getElementById('log-date').value = new Date().toISOString().slice(0,10);
+    document.getElementById('log-note').value = '';
+  }
+}
+
+// ============================================================
+//  JOURNAL
+// ============================================================
+const TYPE_LABELS = {watering:'💧 Полив',fertilizer:'🌱 Удобрение',treatment:'🧪 Обработка',pruning:'✂️ Обрезка',harvest:'🫐 Урожай',other:'📝 Другое'};
+const TYPE_CSS = {watering:'type-watering',fertilizer:'type-fertilizer',treatment:'type-treatment',pruning:'type-pruning',harvest:'type-harvest',other:'type-other'};
+
+function renderJournal() {
+  const s = sectors.find(x=>x.id===currentSectorId);
+  if (!s) return;
+  const list = document.getElementById('journal-list');
+  const empty = document.getElementById('journal-empty');
+  const journal = (s.journal||[]).slice().reverse();
+  if (!journal.length) {
+    list.innerHTML=''; empty.style.display='';
+    return;
+  }
+  empty.style.display='none';
+  list.innerHTML = journal.map((log,i) => `
+    <div class="journal-item">
+      <div class="journal-item-head">
+        <span class="journal-type ${TYPE_CSS[log.type]||'type-other'}">${TYPE_LABELS[log.type]||log.type}</span>
+        <span class="journal-date">${log.date||''}</span>
+      </div>
+      <div class="journal-note">${escHtml(log.note||'—')}</div>
+      <div class="journal-actions-row">
+        <button class="btn btn-ghost btn-sm" onclick="deleteLog('${log.id}')">🗑 Удалить</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function saveLog() {
+  const date = document.getElementById('log-date').value;
+  const type = document.getElementById('log-type').value;
+  const note = document.getElementById('log-note').value.trim();
+  if (!note) { toast('Добавьте заметку'); return; }
+  const s = sectors.find(x=>x.id===currentSectorId);
+  if (!s) return;
+  if (!s.journal) s.journal=[];
+  s.journal.push({ id:'l'+Date.now(), date, type, note, createdAt:new Date().toISOString() });
+  saveSectors();
+  toast('Запись добавлена ✓');
+  switchTab('journal');
+}
+
+function deleteLog(logId) {
+  const s = sectors.find(x=>x.id===currentSectorId);
+  if (!s||!s.journal) return;
+  s.journal = s.journal.filter(l=>l.id!==logId);
+  saveSectors();
+  renderJournal();
+  toast('Запись удалена');
+}
+
+// ============================================================
+//  EXPENSES
+// ============================================================
+const EXP_CAT_ICONS = {fertilizer:'🌱',treatment:'🧪',water:'💧',equipment:'🔧',other:'📦'};
+
+function showExpenseModal() {
+  // Fill sector list
+  const sel = document.getElementById('e-sector');
+  sel.innerHTML = '<option value="">Все сектора</option>' +
+    sectors.map(s=>`<option value="${s.id}">${escHtml(s.name)}</option>`).join('');
+  document.getElementById('e-name').value = '';
+  document.getElementById('e-cost').value = '';
+  document.getElementById('e-note').value = '';
+  document.getElementById('e-date').value = new Date().toISOString().slice(0,10);
+  openOverlay('expense-overlay');
+}
+
+function saveExpense() {
+  const name = document.getElementById('e-name').value.trim();
+  const cost = parseFloat(document.getElementById('e-cost').value)||0;
+  if (!name) { toast('Укажите наименование'); return; }
+  if (!cost) { toast('Укажите сумму'); return; }
+  expenses.push({
+    id:'e'+Date.now(),
+    name, cost,
+    cat:document.getElementById('e-cat').value,
+    date:document.getElementById('e-date').value,
+    sectorId:document.getElementById('e-sector').value,
+    note:document.getElementById('e-note').value.trim(),
+  });
+  saveExpenses();
+  closeOverlay('expense-overlay');
+  renderExpensesCats();
+  renderExpensesList();
+  toast('Затрата добавлена ✓');
+}
+
+function renderExpensesCats() {
+  const cats = ['fertilizer','treatment','water','equipment','other'];
+  const totals = {};
+  cats.forEach(c=>totals[c]=0);
+  expenses.forEach(e=>{ if(totals[e.cat]!==undefined) totals[e.cat]+=e.cost; else totals['other']+=e.cost; });
+  const total = Object.values(totals).reduce((a,b)=>a+b,0);
+  document.getElementById('expense-cats').innerHTML = [...cats.map(c=>`
+    <div class="exp-cat">
+      <div class="exp-cat-name">${EXP_CAT_ICONS[c]} ${CAT_LABELS[c]}</div>
+      <div class="exp-cat-val">${Math.round(totals[c]).toLocaleString('ru-RU')}</div>
+      <div class="exp-cat-hint">₽</div>
+    </div>`),`
+    <div class="exp-cat" style="border-color:var(--amber);grid-column:span 2 / span 2">
+      <div class="exp-cat-name">💰 Итого затрат</div>
+      <div class="exp-cat-val" style="color:#fff">${Math.round(total).toLocaleString('ru-RU')}</div>
+      <div class="exp-cat-hint">₽</div>
+    </div>`
+  ].join('');
+}
+
+function renderExpensesList(limit) {
+  const list = document.getElementById('expenses-list');
+  const data = expenses.slice().reverse().slice(0, limit||5);
+  if (!data.length) {
+    list.innerHTML='<div class="empty" style="padding:20px 0"><div class="empty-text">Нет затрат</div></div>';
+    return;
+  }
+  list.innerHTML = data.map(e=>`
+    <div class="exp-item">
+      <div class="exp-item-left">
+        <div class="exp-item-name">${EXP_CAT_ICONS[e.cat]||'📦'} ${escHtml(e.name)}</div>
+        <div class="exp-item-meta">${e.date||''} · ${CAT_LABELS[e.cat]||e.cat}${e.note?' · '+escHtml(e.note):''}</div>
+      </div>
+      <div class="exp-item-right">
+        <div class="exp-item-cost">${Math.round(e.cost).toLocaleString('ru-RU')} ₽</div>
+        <button class="icon-btn" onclick="deleteExpense('${e.id}')">🗑</button>
+      </div>
+    </div>`).join('');
+}
+
+function deleteExpense(id) {
+  expenses = expenses.filter(e=>e.id!==id);
+  saveExpenses();
+  renderExpensesCats();
+  renderExpensesList();
+  if (document.getElementById('all-expenses-overlay').classList.contains('open')) showAllExpenses();
+  toast('Удалено');
+}
+
+function showAllExpenses() {
+  const el = document.getElementById('all-expenses-list');
+  const data = expenses.slice().reverse();
+  if (!data.length) {
+    el.innerHTML='<div class="empty"><div class="empty-text">Нет затрат</div></div>';
+  } else {
+    el.innerHTML = data.map(e=>`
+      <div class="exp-item" style="margin-bottom:8px">
+        <div class="exp-item-left">
+          <div class="exp-item-name">${EXP_CAT_ICONS[e.cat]||'📦'} ${escHtml(e.name)}</div>
+          <div class="exp-item-meta">${e.date||''} · ${CAT_LABELS[e.cat]||e.cat}${e.note?' · '+escHtml(e.note):''}</div>
+        </div>
+        <div class="exp-item-right">
+          <div class="exp-item-cost">${Math.round(e.cost).toLocaleString('ru-RU')} ₽</div>
+          <button class="icon-btn" onclick="deleteExpense('${e.id}')">🗑</button>
+        </div>
+      </div>`).join('');
+  }
+  openOverlay('all-expenses-overlay');
+}
+
+// ============================================================
+//  EXPORT / IMPORT
+// ============================================================
+function exportData() {
+  const data = JSON.stringify({sectors,expenses,exportedAt:new Date().toISOString()},null,2);
+  const blob = new Blob([data],{type:'application/json;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href=url;
+  a.download=`golubika_backup_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('Экспорт выполнен ✓');
+}
+
+function importData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (data.sectors) { sectors = data.sectors; saveSectors(); }
+      if (data.expenses) { expenses = data.expenses; saveExpenses(); }
+      renderAll();
+      toast('Импорт выполнен ✓');
+    } catch(err) {
+      toast('Ошибка чтения файла');
+    }
+  };
+  reader.readAsText(file, 'UTF-8');
+  event.target.value = '';
+}
+
+// ============================================================
+//  PERSIST
+// ============================================================
+function saveSectors()  { localStorage.setItem('gb_sectors',  JSON.stringify(sectors));  }
+function saveExpenses() { localStorage.setItem('gb_expenses', JSON.stringify(expenses)); }
+
+// ============================================================
+//  OVERLAY HELPERS
+// ============================================================
+function openOverlay(id)  { document.getElementById(id).classList.add('open'); }
+function closeOverlay(id) { document.getElementById(id).classList.remove('open'); }
+function overlayClose(e, id) { if(e.target.id===id) closeOverlay(id); }
+
+// Close on Esc
+document.addEventListener('keydown', e => {
+  if(e.key==='Escape') {
+    ['sector-overlay','detail-overlay','expense-overlay','all-expenses-overlay']
+      .forEach(id => closeOverlay(id));
+  }
+});
+
+// ============================================================
+//  TOAST
+// ============================================================
+let toastTimer;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+// ============================================================
+//  UTILS
+// ============================================================
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+window.onload = init;
+</script>
+</body>
+</html>
